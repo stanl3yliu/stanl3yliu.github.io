@@ -107,20 +107,20 @@
       }
     }
     
-    /* Desktop sidebar styling - PROPER STICKY */
-    @media (min-width: 1024px) {
-      .sidebar-desktop {
-        position: sticky;
-        top: 0;
-        height: 100vh;
-      }
-      
-      .desktop-container {
-        display: flex;
-        max-width: 1280px;
-        margin: 0 auto;
-      }
-    }
+    /* PROPER scroll positioning to align section headers with Stanley Liu */
+@media (min-width: 1024px) {
+  #about {
+    scroll-margin-top: -3rem;
+  }
+  
+  #experience {
+    scroll-margin-top: -3rem;
+  }
+  
+  #projects {
+    scroll-margin-top: -3rem;
+  }
+}
     
     /* PROPER scroll positioning to align section headers with Stanley Liu */
     @media (min-width: 1024px) {
@@ -243,7 +243,7 @@
       </section>
     </main>
   </div>
-  <script>
+<script>
 document.addEventListener('DOMContentLoaded', function() {
   const navLinks = document.querySelectorAll('nav a[href^="#"]');
   
@@ -254,19 +254,19 @@ document.addEventListener('DOMContentLoaded', function() {
       const targetElement = document.getElementById(targetId);
       
       if (targetElement) {
-        // Get the Y position of "Stanley Liu" (fixed position)
+        // Get Stanley Liu's position from top of page
         const stanleyTitle = document.querySelector('h1');
-        const stanleyPosition = stanleyTitle.offsetTop;
+        const stanleyTop = stanleyTitle.offsetTop;
         
-        // Get the section header position relative to page
+        // Get section header's position from top of page  
         const sectionHeader = targetElement.querySelector('h2');
-        const sectionPosition = sectionHeader.offsetTop;
+        const sectionTop = sectionHeader.offsetTop;
         
-        // Scroll to align section header with Stanley Liu
-        const targetScroll = sectionPosition - stanleyPosition;
+        // Calculate scroll position to align them
+        const scrollTarget = sectionTop - stanleyTop;
         
         window.scrollTo({
-          top: targetScroll,
+          top: scrollTarget,
           behavior: 'smooth'
         });
       }
