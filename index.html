@@ -235,5 +235,37 @@
       </section>
     </main>
   </div>
+  <script>
+document.addEventListener('DOMContentLoaded', function() {
+  const navLinks = document.querySelectorAll('nav a[href^="#"]');
+  
+  navLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href').substring(1);
+      const targetElement = document.getElementById(targetId);
+      
+      if (targetElement) {
+        // Get the Y position of "Stanley Liu" relative to viewport
+        const stanleyTitle = document.querySelector('h1');
+        const stanleyPosition = stanleyTitle.getBoundingClientRect().top;
+        
+        // Get the section header (h2) 
+        const sectionHeader = targetElement.querySelector('h2');
+        const sectionPosition = sectionHeader.getBoundingClientRect().top;
+        
+        // Calculate the difference and adjust scroll
+        const currentScroll = window.pageYOffset;
+        const targetScroll = currentScroll + (sectionPosition - stanleyPosition);
+        
+        window.scrollTo({
+          top: targetScroll,
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+});
+</script>
 </body>
 </html>
